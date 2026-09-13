@@ -1,0 +1,68 @@
+---
+import Icons from './Icons.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/coaching', label: 'Coaching' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="eyebrow brand">Eli del Toro <span>·</span> Coach</a>
+    <nav class="links" aria-label="Main">
+      {links.map((l) => (
+        <a href={l.href} class:list={{ active: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </nav>
+    <a href="/contact" class="btn btn-red nav-cta">Contact me <Icons name="arrow" /></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <span class="icon-open"><Icons name="menu" size={24} /></span>
+      <span class="icon-close"><Icons name="close" size={24} /></span>
+    </button>
+  </div>
+  <div class="mobile" id="mobile-menu" hidden>
+    <nav class="container mobile-links" aria-label="Main mobile">
+      {links.map((l) => (
+        <a href={l.href} class:list={{ active: path === l.href }}>{l.label}</a>
+      ))}
+      <a href="/contact" class="btn btn-red">Contact me <Icons name="arrow" /></a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+  .brand { font-size: 13px; color: var(--black); white-space: nowrap; }
+  .brand span { color: var(--red); }
+  .links { display: flex; align-items: center; gap: clamp(20px, 2.5vw, 36px); font-size: 15px; font-weight: 600; }
+  .links a.active { color: var(--red); }
+  .nav-cta { min-height: 46px; padding: 12px 20px; font-size: 14px; }
+  .menu-btn { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
+  .menu-btn .icon-close { display: none; }
+  .menu-btn[aria-expanded="true"] .icon-open { display: none; }
+  .menu-btn[aria-expanded="true"] .icon-close { display: inline-flex; }
+  .mobile { border-top: 1px solid var(--line); background: var(--white); }
+  .mobile-links { display: flex; flex-direction: column; gap: 4px; padding-block: 12px 20px; font-size: 18px; font-weight: 700; }
+  .mobile-links a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .mobile-links a.active { color: var(--red); }
+  .mobile-links .btn { margin-top: 14px; }
+  @media (max-width: 860px) {
+    .nav-inner { height: 64px; }
+    .links, .nav-cta { display: none; }
+    .menu-btn { display: inline-flex; }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    if (menu) menu.hidden = open;
+  });
+</script>

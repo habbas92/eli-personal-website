@@ -1,0 +1,21 @@
+{
+  "name": "eli-personal-website",
+  "version": "1.0.0",
+  "description": "Website for Eli del Toro, strength, hybrid training and Pilates Sculpt coach on the French Riviera.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.0",
+    "@fontsource-variable/manrope": "^5.2.0",
+    "@fontsource/instrument-serif": "^5.2.0",
+    "astro": "^5.13.0",
+    "sharp": "^0.34.0"
+  }
+}

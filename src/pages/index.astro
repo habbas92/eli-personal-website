@@ -1,0 +1,193 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icons from '../components/Icons.astro';
+import EmailLink from '../components/EmailLink.astro';
+import hero from '../assets/photos/home-hero.jpg';
+
+const marquee = ['Strength', 'Hybrid training', 'Pilates Sculpt', 'HIIT', 'French Riviera', 'Online'];
+const expectations = [
+  'Challenging workouts with options for different fitness levels.',
+  'Clear technique and coaching cues.',
+  'Purposeful programming with specific goals.',
+  'Energy, motivation and connection.',
+  'Strength that supports everyday life and athletic performance.',
+  'High standards without toxic fitness culture.',
+  'Coaching in English, French and Spanish.',
+];
+---
+<Base title="Home" description="Eli del Toro is a strength, hybrid training and Pilates Sculpt coach. In-person coaching on the French Riviera, online coaching and international events.">
+
+  <section class="hero container">
+    <div class="hero-text">
+      <p class="eyebrow rule red">Strength · Hybrid training · Pilates Sculpt</p>
+      <h1 class="display h-xl">Push your<br /><span class="serif red">limits.</span></h1>
+      <p class="lead">I’m Eli del Toro, a strength, hybrid training and Pilates Sculpt coach.</p>
+      <p class="body">I create challenging training experiences that combine technique, intensity, energy and music to help you feel stronger, build confidence and find a genuine balance between fitness and the rest of your life.</p>
+      <div class="actions">
+        <a href="/contact" class="btn btn-red">Contact me <Icons name="arrow" /></a>
+        <a href="/coaching" class="link-arrow">Discover my classes</a>
+      </div>
+      <p class="eyebrow brown where">In-person coaching on the French Riviera · online coaching · available for international events</p>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-back"></div>
+      <div class="frame hero-frame">
+        <Image src={hero} alt="Eli del Toro sitting on a white bench by the sea" width={1100} widths={[480, 800, 1100]} sizes="(max-width: 860px) 90vw, 40vw" loading="eager" fetchpriority="high" />
+      </div>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 128 128"><defs><path id="ring" d="M64,64 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs><text font-size="11.5" font-weight="700" letter-spacing="2.6" fill="#ffffff"><textPath href="#ring">ENGLISH · FRANÇAIS · ESPAÑOL · </textPath></text></svg>
+        <span class="serif">Eli</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1, 2, 3].map(() => marquee.map((m) => (<><span>{m}</span><span class="dot">·</span></>)))}
+    </div>
+  </div>
+
+  <section class="philosophy grain">
+    <span class="glow"></span>
+    <div class="container split">
+      <div>
+        <p class="eyebrow nude">My philosophy</p>
+        <h2 class="display h-md">Movement can help you <span class="serif nude">live better.</span></h2>
+      </div>
+      <div class="stack">
+        <p class="lead">My role is to guide you beyond your comfort zone, help you understand your body and discover abilities you may not have known you had.</p>
+        <p class="body-light">I want every session to challenge you, but I also want you to enjoy it—to develop strength, knowledge and skills, and carry that energy with you long after the workout is over.</p>
+        <p class="body-light">I believe training isn’t about chasing a stereotype or punishing your body. It’s about understanding it, developing its abilities and building a stronger, more balanced relationship with it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work container">
+    <div class="work-head">
+      <p class="eyebrow red">How we can work together</p>
+      <h2 class="display h-md">Three ways to train<br />with <span class="serif red">Eli.</span></h2>
+    </div>
+    <div class="cards">
+      <article class="card card-sand">
+        <p class="eyebrow red">01</p>
+        <h3 class="display h-card">Group coaching</h3>
+        <p class="lead small">Strength, HIIT and Pilates Sculpt classes that combine technique, intensity, energy and music.</p>
+        <p class="body">My sessions are challenging and adaptable to different fitness levels. Whether you’re just getting started or already have experience, my goal is to help you feel supported, move better and finish the session having pushed beyond your own limits.</p>
+        <a href="/coaching#group" class="link-arrow red push">Discover my classes <Icons name="arrow" /></a>
+      </article>
+      <article class="card card-black">
+        <p class="eyebrow nude">02</p>
+        <h3 class="display h-card">Personal coaching</h3>
+        <p class="lead small">In-person or online coaching adapted to your goals, experience and lifestyle.</p>
+        <p class="nude-text">I work with people who want to build strength, feel better in their bodies or improve their performance in other sports. I also prepare clients for running events, competitions such as HYROX and Spartan, and other athletic challenges.</p>
+        <p class="nude-text">The process includes programming, ongoing support, adjustments and education, so you understand what you’re doing and why you’re doing it.</p>
+        <a href="/coaching#personal" class="btn btn-red push">Train with Eli <Icons name="arrow" /></a>
+      </article>
+      <article class="card card-nude">
+        <p class="eyebrow red">03</p>
+        <h3 class="display h-card">Classes and events</h3>
+        <p class="lead small">Special sessions for studios, communities, events and brand collaborations.</p>
+        <p class="ink3">I create group experiences in strength, conditioning, HIIT and Pilates Sculpt, adapted to the audience, space and purpose of each event. Sessions are available in English, French or Spanish.</p>
+        <a href="/contact" class="link-arrow push">Invite Eli <Icons name="arrow" /></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="expect container">
+    <div class="split expect-grid">
+      <div>
+        <p class="eyebrow red">What you can expect from me</p>
+        <h2 class="display h-xs">High standards.<br /><span class="serif brown">No toxic fitness culture.</span></h2>
+      </div>
+      <ul class="expect-list">
+        {expectations.map((e, i) => (
+          <li class="row"><span class="eyebrow red">{String(i + 1).padStart(2, '0')}</span><span>{e}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta" id="contact">
+      <span class="glow"></span>
+      <div class="cta-text">
+        <h2 class="display h-lg">Shall we train <span class="serif nude">together?</span></h2>
+        <p class="cta-body">Whether you’re looking for personal coaching, want to experience one of my classes or would like to invite me to your studio, event or collaboration, I’d love to hear from you.</p>
+        <p class="eyebrow nude">Available on the French Riviera, online and for international events.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact" class="btn btn-white">Contact me <Icons name="arrow" /></a>
+        <div class="cta-links">
+          <a href="https://www.instagram.com/elideltorov" target="_blank" rel="noopener">Instagram</a>
+          <EmailLink>Email</EmailLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 4vw, 64px); align-items: center; padding-block: clamp(40px, 6vw, 80px) clamp(48px, 6vw, 96px); }
+  .hero-text { display: flex; flex-direction: column; gap: clamp(20px, 2.2vw, 30px); }
+  .hero-text .lead { max-width: 620px; font-size: clamp(19px, 1.8vw, 24px); }
+  .hero-text .body { max-width: 600px; font-size: clamp(16px, 1.3vw, 18px); }
+  .where { letter-spacing: 0.14em; line-height: 1.7; max-width: 620px; }
+  .hero-photo { position: relative; aspect-ratio: 5 / 6; max-height: 680px; }
+  .hero-back { position: absolute; inset: 28px -16px -20px 40px; background: var(--nude); border-radius: 240px 240px 28px 28px; }
+  .hero-frame { position: absolute; inset: 0 8px 0 12px; border-radius: 240px 240px 28px 28px; }
+  .hero-frame img { object-position: 50% 30%; }
+  .badge { position: absolute; left: -24px; bottom: 48px; width: 128px; height: 128px; border-radius: 50%; background: var(--red); color: var(--white); display: flex; align-items: center; justify-content: center; box-shadow: 0 18px 40px rgba(30, 26, 25, 0.25); }
+  .badge svg { position: absolute; inset: 0; width: 100%; height: 100%; font-family: var(--font-body); }
+  .badge .serif { font-size: 34px; line-height: 1; position: relative; }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero-photo { max-width: 420px; width: 100%; margin-inline: auto; aspect-ratio: 4 / 5; }
+    .badge { left: -8px; width: 96px; height: 96px; }
+    .badge .serif { font-size: 26px; }
+  }
+
+  .philosophy { background: var(--wine); color: var(--white); padding-block: var(--section); overflow: hidden; }
+  .philosophy .glow { top: -300px; right: -200px; width: 900px; height: 900px; background: radial-gradient(closest-side, var(--red) 0%, rgba(77, 20, 24, 0) 70%); opacity: 0.7; }
+  .philosophy .display { margin-top: 22px; }
+  .stack { display: flex; flex-direction: column; gap: 26px; padding-top: 8px; }
+
+  .work { padding-block: var(--section) 0; display: flex; flex-direction: column; gap: clamp(28px, 3.5vw, 48px); }
+  .work-head .display { margin-top: 18px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .card { display: flex; flex-direction: column; gap: 20px; border-radius: var(--radius-md); padding: clamp(28px, 2.8vw, 40px) clamp(24px, 2.4vw, 34px) clamp(28px, 2.6vw, 36px); }
+  .card .display { margin-top: 2px; }
+  .lead.small { font-size: 17px; }
+  .card-sand { background: var(--sand); }
+  .card-black { background: var(--black); color: var(--white); }
+  .card-nude { background: var(--nude); }
+  .nude-text { color: var(--nude); text-wrap: pretty; }
+  .ink3 { color: var(--ink-3); text-wrap: pretty; }
+  .push { margin-top: auto; align-self: flex-start; }
+  @media (max-width: 1000px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+
+  .expect { padding-block: var(--section) 0; }
+  .expect-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); border-top: 1px solid var(--line); padding-top: clamp(40px, 5vw, 72px); }
+  .expect .display { margin-top: 18px; }
+  .expect-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+  .expect-list .row:last-child { border-bottom: 0; }
+  @media (max-width: 860px) {
+    .expect-grid { grid-template-columns: minmax(0, 1fr); }
+    .expect-list { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  .cta { margin-top: var(--section); background: var(--red); color: var(--white); border-radius: var(--radius-lg); padding: clamp(44px, 6vw, 88px) clamp(24px, 5.5vw, 80px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px; align-items: center; position: relative; overflow: hidden; }
+  .cta .glow { bottom: -360px; right: -160px; width: 760px; height: 760px; background: var(--wine); opacity: 0.6; }
+  .cta-text, .cta-actions { position: relative; }
+  .cta-text { display: flex; flex-direction: column; gap: 22px; }
+  .cta-body { color: var(--rose-light); max-width: 620px; font-size: 18px; text-wrap: pretty; }
+  .cta-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .cta-links { display: flex; gap: 20px; font-size: 14px; font-weight: 700; color: var(--rose-light); padding-left: 8px; }
+  @media (max-width: 860px) {
+    .cta { grid-template-columns: minmax(0, 1fr); }
+    .cta-actions { align-items: stretch; }
+    .cta-actions .btn { width: 100%; }
+    .cta-links { justify-content: center; padding-left: 0; }
+  }
+</style>

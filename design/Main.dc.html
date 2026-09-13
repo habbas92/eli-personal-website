@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; background: #ffffff; font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif; color: #1e1a19; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; } a:hover { opacity: 0.75; }
+    .display { font-family: 'Bricolage Grotesque', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; font-weight: 800; letter-spacing: -0.035em; }
+    .serif { font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display: flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .rise-1 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.05s both; }
+    .rise-2 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.2s both; }
+    .rise-3 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.35s both; }
+    .rise-4 { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) 0.3s both; }
+    .photo { background-color: #cbc1b4; background-image: repeating-linear-gradient(135deg, rgba(30,26,25,0.07) 0 2px, transparent 2px 18px); }
+    .photo-dark { background-color: #4d1418; background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 18px); }
+    .grain { background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 4px 4px; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; min-height: 4100px; background: #ffffff; overflow: hidden; position: relative;">
+
+  <!-- NAV -->
+  <div style="display: flex; align-items: center; justify-content: space-between; height: 88px; padding: 0 64px; border-bottom: 1px solid rgba(30,26,25,0.1);">
+    <div class="eyebrow" style="font-size: 13px; color: #1e1a19;">Eli del Toro <span style="color: #7f0f1d;">·</span> Coach</div>
+    <div style="display: flex; align-items: center; gap: 36px; font-size: 15px; font-weight: 600;">
+      <a href="#" style="color: #7f0f1d;">Home</a>
+      <a href="#">Coaching</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <a href="#contact" style="display: flex; align-items: center; gap: 10px; background: #7f0f1d; color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 22px; border-radius: 999px;">
+      <span>Contact me</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: center; padding: 72px 64px 88px; position: relative;">
+    <div style="grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 30px;">
+      <div class="eyebrow rise-1" style="display: flex; align-items: center; gap: 12px; color: #7f0f1d;">
+        <span style="display: inline-block; width: 28px; height: 2px; background: #7f0f1d;"></span>
+        <span>Strength · Hybrid training · Pilates Sculpt</span>
+      </div>
+      <div class="display rise-2" style="font-size: 148px; line-height: 0.88; color: #1e1a19;">Push your<br><span class="serif" style="color: #7f0f1d; font-size: 156px;">limits.</span></div>
+      <div class="rise-3" style="font-size: 24px; line-height: 1.4; font-weight: 600; color: #1e1a19; max-width: 620px; text-wrap: pretty;">I’m Eli del Toro, a strength, hybrid training and Pilates Sculpt coach.</div>
+      <div class="rise-3" style="font-size: 18px; line-height: 1.6; color: #5a4c46; max-width: 600px; text-wrap: pretty;">I create challenging training experiences that combine technique, intensity, energy and music to help you feel stronger, build confidence and find a genuine balance between fitness and the rest of your life.</div>
+      <div class="rise-3" style="display: flex; align-items: center; gap: 18px; padding-top: 4px;">
+        <a href="#contact" style="display: flex; align-items: center; gap: 10px; background: #7f0f1d; color: #ffffff; font-size: 15px; font-weight: 700; padding: 18px 28px; border-radius: 999px;">
+          <span>Contact me</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+        </a>
+        <a href="#" style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; color: #1e1a19; border-bottom: 2px solid #1e1a19; padding-bottom: 4px;">
+          <span>Discover my classes</span>
+        </a>
+      </div>
+      <div class="eyebrow rise-3" style="color: #7c6860; letter-spacing: 0.14em; line-height: 1.7; padding-top: 6px;">In-person coaching on the French Riviera · online coaching · available for international events</div>
+    </div>
+
+    <div class="rise-4" style="grid-column: 8 / span 5; position: relative; height: 640px;">
+      <div style="position: absolute; inset: 28px -16px -20px 40px; background: #cbc1b4; border-radius: 240px 240px 28px 28px;"></div>
+      <div style="position: absolute; inset: 0 8px 0 12px; border-radius: 240px 240px 28px 28px; overflow: hidden;"><img src="home-hero.jpg" alt="Eli del Toro sitting on a white bench by the sea" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;"></div>
+      <div style="position: absolute; left: -36px; bottom: 56px; width: 128px; height: 128px; border-radius: 50%; background: #7f0f1d; color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 18px 40px rgba(30,26,25,0.25);">
+        <svg width="128" height="128" viewBox="0 0 128 128" style="position: absolute; inset: 0;">
+          <defs><path id="ring" d="M64,64 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>
+          <text font-family="Manrope, Arial, sans-serif" font-size="11.5" font-weight="700" letter-spacing="2.6" fill="#ffffff"><textPath href="#ring">ENGLISH · FRANÇAIS · ESPAÑOL · </textPath></text>
+        </svg>
+        <div class="serif" style="font-size: 34px; line-height: 1; position: relative;">Eli</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div style="background: #7f0f1d; color: #ffffff; height: 64px; display: flex; align-items: center; overflow: hidden;">
+    <div class="marquee-track eyebrow" style="font-size: 14px; letter-spacing: 0.22em;">
+      <span style="padding: 0 28px;">Strength</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Hybrid training</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Pilates Sculpt</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">HIIT</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">French Riviera</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Online</span><span style="padding: 0 28px; opacity: 0.5;">·</span>
+      <span style="padding: 0 28px;">Strength</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Hybrid training</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Pilates Sculpt</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">HIIT</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">French Riviera</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Online</span><span style="padding: 0 28px; opacity: 0.5;">·</span>
+      <span style="padding: 0 28px;">Strength</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Hybrid training</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Pilates Sculpt</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">HIIT</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">French Riviera</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Online</span><span style="padding: 0 28px; opacity: 0.5;">·</span>
+      <span style="padding: 0 28px;">Strength</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Hybrid training</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Pilates Sculpt</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">HIIT</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">French Riviera</span><span style="padding: 0 28px; opacity: 0.5;">·</span><span style="padding: 0 28px;">Online</span><span style="padding: 0 28px; opacity: 0.5;">·</span>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="grain" style="background-color: #4d1418; color: #ffffff; padding: 120px 64px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: start; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -300px; right: -200px; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(closest-side, #7f0f1d 0%, rgba(77,20,24,0) 70%); opacity: 0.7; pointer-events: none;"></div>
+    <div style="grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 22px; position: relative;">
+      <div class="eyebrow" style="color: #cbc1b4;">My philosophy</div>
+      <div class="display" style="font-size: 84px; line-height: 0.94; text-wrap: balance;">Movement can help you <span class="serif" style="font-size: 92px; color: #cbc1b4;">live better.</span></div>
+    </div>
+    <div style="grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 28px; padding-top: 16px; position: relative;">
+      <div style="font-size: 22px; line-height: 1.5; font-weight: 600; text-wrap: pretty;">My role is to guide you beyond your comfort zone, help you understand your body and discover abilities you may not have known you had.</div>
+      <div style="font-size: 18px; line-height: 1.65; color: #e8d9d3; text-wrap: pretty;">I want every session to challenge you, but I also want you to enjoy it—to develop strength, knowledge and skills, and carry that energy with you long after the workout is over.</div>
+      <div style="font-size: 18px; line-height: 1.65; color: #e8d9d3; text-wrap: pretty;">I believe training isn’t about chasing a stereotype or punishing your body. It’s about understanding it, developing its abilities and building a stronger, more balanced relationship with it.</div>
+    </div>
+  </div>
+
+  <!-- HOW WE CAN WORK TOGETHER -->
+  <div style="padding: 120px 64px 112px; display: flex; flex-direction: column; gap: 48px;">
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div class="eyebrow" style="color: #7f0f1d;">How we can work together</div>
+      <div class="display" style="font-size: 84px; line-height: 0.94; color: #1e1a19;">Three ways to train<br>with <span class="serif" style="font-size: 92px; color: #7f0f1d;">Eli.</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 20px; background: #f4f0eb; border-radius: 28px; padding: 40px 34px 36px; min-height: 560px;">
+        <div class="eyebrow" style="color: #7f0f1d;">01</div>
+        <div class="display" style="font-size: 44px; line-height: 0.98; color: #1e1a19;">Group coaching</div>
+        <div style="font-size: 17px; line-height: 1.55; font-weight: 600; color: #1e1a19; text-wrap: pretty;">Strength, HIIT and Pilates Sculpt classes that combine technique, intensity, energy and music.</div>
+        <div style="font-size: 16px; line-height: 1.65; color: #5a4c46; text-wrap: pretty;">My sessions are challenging and adaptable to different fitness levels. Whether you’re just getting started or already have experience, my goal is to help you feel supported, move better and finish the session having pushed beyond your own limits.</div>
+        <a href="#" style="margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #7f0f1d; border-bottom: 2px solid #7f0f1d; align-self: flex-start; padding-bottom: 3px;">
+          <span>Discover my classes</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+        </a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px; background: #1e1a19; color: #ffffff; border-radius: 28px; padding: 40px 34px 36px; min-height: 560px;">
+        <div class="eyebrow" style="color: #cbc1b4;">02</div>
+        <div class="display" style="font-size: 44px; line-height: 0.98;">Personal coaching</div>
+        <div style="font-size: 17px; line-height: 1.55; font-weight: 600; text-wrap: pretty;">In-person or online coaching adapted to your goals, experience and lifestyle.</div>
+        <div style="font-size: 16px; line-height: 1.65; color: #cbc1b4; text-wrap: pretty;">I work with people who want to build strength, feel better in their bodies or improve their performance in other sports. I also prepare clients for running events, competitions such as HYROX and Spartan, and other athletic challenges.</div>
+        <div style="font-size: 16px; line-height: 1.65; color: #cbc1b4; text-wrap: pretty;">The process includes programming, ongoing support, adjustments and education, so you understand what you’re doing and why you’re doing it.</div>
+        <a href="#" style="margin-top: auto; display: flex; align-items: center; gap: 10px; background: #7f0f1d; color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 22px; border-radius: 999px; align-self: flex-start;">
+          <span>Train with Eli</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+        </a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px; background: #cbc1b4; color: #1e1a19; border-radius: 28px; padding: 40px 34px 36px; min-height: 560px;">
+        <div class="eyebrow" style="color: #7f0f1d;">03</div>
+        <div class="display" style="font-size: 44px; line-height: 0.98;">Classes and events</div>
+        <div style="font-size: 17px; line-height: 1.55; font-weight: 600; text-wrap: pretty;">Special sessions for studios, communities, events and brand collaborations.</div>
+        <div style="font-size: 16px; line-height: 1.65; color: #4a3d38; text-wrap: pretty;">I create group experiences in strength, conditioning, HIIT and Pilates Sculpt, adapted to the audience, space and purpose of each event. Sessions are available in English, French or Spanish.</div>
+        <a href="#contact" style="margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #1e1a19; border-bottom: 2px solid #1e1a19; align-self: flex-start; padding-bottom: 3px;">
+          <span>Invite Eli</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU CAN EXPECT -->
+  <div style="margin: 0 64px 112px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: start; border-top: 1px solid rgba(30,26,25,0.12); padding-top: 72px;">
+    <div style="grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 18px;">
+      <div class="eyebrow" style="color: #7f0f1d;">What you can expect from me</div>
+      <div class="display" style="font-size: 56px; line-height: 0.98; color: #1e1a19;">High standards.<br><span class="serif" style="font-size: 62px; color: #7c6860;">No toxic fitness culture.</span></div>
+    </div>
+    <div style="grid-column: 6 / span 7; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px;">
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">01</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Challenging workouts with options for different fitness levels.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">02</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Clear technique and coaching cues.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">03</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Purposeful programming with specific goals.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">04</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Energy, motivation and connection.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">05</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Strength that supports everyday life and athletic performance.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">06</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">High standards without toxic fitness culture.</span></div>
+      <div style="display: flex; gap: 16px; padding: 22px 0; border-top: 1px solid rgba(30,26,25,0.12);"><span class="eyebrow" style="color: #7f0f1d; padding-top: 4px;">07</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Coaching in English, French and Spanish.</span></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div id="contact" style="margin: 0 64px 72px; background: #7f0f1d; color: #ffffff; border-radius: 36px; padding: 88px 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; bottom: -360px; right: -160px; width: 760px; height: 760px; border-radius: 50%; background: #4d1418; opacity: 0.6; pointer-events: none;"></div>
+    <div style="grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 22px; position: relative;">
+      <div class="display" style="font-size: 96px; line-height: 0.9;">Shall we train <span class="serif" style="font-size: 104px; color: #cbc1b4;">together?</span></div>
+      <div style="font-size: 18px; line-height: 1.6; max-width: 620px; text-wrap: pretty; color: #f4e6e3;">Whether you’re looking for personal coaching, want to experience one of my classes or would like to invite me to your studio, event or collaboration, I’d love to hear from you.</div>
+      <div class="eyebrow" style="color: #cbc1b4; letter-spacing: 0.14em;">Available on the French Riviera, online and for international events.</div>
+    </div>
+    <div style="grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; position: relative;">
+      <a href="#" style="display: flex; align-items: center; gap: 10px; background: #ffffff; color: #7f0f1d; font-size: 15px; font-weight: 800; padding: 20px 30px; border-radius: 999px;">
+        <span>Contact me</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
+      </a>
+      <div style="display: flex; gap: 20px; font-size: 14px; font-weight: 700; color: #f4e6e3; padding-left: 8px; padding-top: 8px;">
+        <a href="#">Instagram</a><a href="#">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="margin: 0 64px; padding: 32px 0 48px; border-top: 1px solid rgba(30,26,25,0.12); display: flex; align-items: center; justify-content: space-between;">
+    <div class="eyebrow" style="font-size: 13px;">Eli del Toro <span style="color: #7f0f1d;">·</span> Coach</div>
+    <div style="display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 600; color: #5a4c46;">
+      <a href="#">Home</a><a href="#">Coaching</a><a href="#">About</a><a href="#">Contact</a>
+    </div>
+    <div style="font-size: 13px; color: #7c6860;">French Riviera · Online · © 2026 Eli del Toro</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

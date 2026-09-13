@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elideltoro.com/sitemap-index.xml
