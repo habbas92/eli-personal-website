@@ -1,0 +1,10 @@
+---
+/** A headline with a plain part and a serif accent. "\n" in the plain part becomes a line break. */
+interface Props { pre: string; accent: string; accentClass?: string; class?: string; as?: 'h1' | 'h2' | 'h3'; break?: boolean; }
+const { pre, accent, accentClass = 'red', class: className = '', as: Tag = 'h2', break: forceBreak = false } = Astro.props;
+const lines = pre.split('\n');
+---
+<Tag class:list={['display', className]}>
+  {lines.map((line, i) => (<>{i > 0 && <br />}{line}</>))}
+  {forceBreak ? <br /> : ' '}<span class:list={['serif', accentClass]}>{accent}</span>
+</Tag>

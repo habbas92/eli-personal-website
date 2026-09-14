@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icons from '../Icons.astro';
+import Heading from '../Heading.astro';
+import photo from '../../assets/photos/coaching-group.jpg';
+import { localePath, t, type Locale } from '../../i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const d = t(locale).coaching;
+const contact = localePath(locale, '/contact');
+---
+<Base locale={locale} page="coaching">
+
+  <section class="page-hero container">
+    <div>
+      <p class="eyebrow red">{d.eyebrow}</p>
+      <Heading as="h1" class="h-md" pre={d.title.pre} accent={d.title.accent} break />
+    </div>
+    <div class="intro">
+      <p class="lead">{d.lead}</p>
+      <p class="body">{d.body}</p>
+    </div>
+  </section>
+
+  <nav class="container section-nav" aria-label="Sections">
+    <a href="#group" class="eyebrow">{d.sectionNav.group}</a>
+    <a href="#personal" class="eyebrow">{d.sectionNav.personal}</a>
+    <a href="#qualifications" class="eyebrow">{d.sectionNav.quals}</a>
+    <a href="#testimonials" class="eyebrow">{d.sectionNav.testimonials}</a>
+  </nav>
+
+  <section id="group" class="container group split">
+    <div class="group-left">
+      <p class="eyebrow red">{d.group.eyebrow}</p>
+      <Heading class="h-xs" pre={d.group.title.pre} accent={d.group.title.accent} break />
+      <p class="body">{d.group.body}</p>
+      <div class="frame group-photo">
+        <Image src={photo} alt={d.group.photoAlt} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 860px) 90vw, 45vw" />
+      </div>
+    </div>
+    <div class="group-right">
+      <p class="eyebrow brown">{d.group.specialtiesLabel}</p>
+      <ul class="specialties">
+        {d.group.specialties.map((s) => (<li><span class="dot"></span>{s}</li>))}
+      </ul>
+      <p class="body">{d.group.body2}</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="one-class">
+      <div>
+        <Heading class="h-xs" pre={d.oneClass.title.pre} accent={d.oneClass.title.accent} accentClass="nude" />
+        <p class="nude-text">{d.oneClass.body}</p>
+      </div>
+      <div>
+        <p class="eyebrow nude">{d.oneClass.elementsLabel}</p>
+        <ul class="elements">
+          {d.oneClass.elements.map((e, i) => (
+            <li><span class="eyebrow nude">{String(i + 1).padStart(2, '0')}</span><span class="display el">{e}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="personal" class="personal grain">
+    <span class="glow"></span>
+    <div class="container split">
+      <div class="personal-left">
+        <p class="eyebrow nude">{d.personal.eyebrow}</p>
+        <Heading class="h-sm" pre={d.personal.title.pre} accent={d.personal.title.accent} accentClass="nude" />
+        <p class="body-light">{d.personal.p1}</p>
+        <p class="body-light">{d.personal.p2}</p>
+        <p class="eyebrow nude avail">{d.personal.avail.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</p>
+        <a href={contact} class="btn btn-white">{d.personal.button} <Icons name="arrow" /></a>
+      </div>
+      <div class="personal-right">
+        <p class="eyebrow nude">{d.personal.forLabel}</p>
+        <ul class="rows light">
+          {d.personal.forPeople.map((p, i) => (
+            <li class="row"><span class="eyebrow nude">{String(i + 1).padStart(2, '0')}</span><span>{p}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="qualifications" class="container quals split">
+    <div>
+      <p class="eyebrow red">{d.quals.eyebrow}</p>
+      <Heading class="h-xs" pre={d.quals.title.pre} accent={d.quals.title.accent} />
+    </div>
+    <ul class="rows quals-list">
+      {d.quals.items.map((q) => (
+        <li class="row qual"><span>{q.name}</span>{q.level && <span class="eyebrow level">{q.level}</span>}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="testimonials" class="container testimonials">
+    <div>
+      <p class="eyebrow red">{d.testimonials.eyebrow}</p>
+      <Heading class="h-xs" pre={d.testimonials.title.pre} accent={d.testimonials.title.accent} />
+    </div>
+    <div class="quotes">
+      {d.testimonials.quotes.map((q, i) => (
+        <blockquote class:list={['quote', i === 0 ? 'quote-sand' : 'quote-nude']}>
+          <p class="serif">{q.text}</p>
+          <footer><span class="line"></span>{q.name}</footer>
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta">
+      <span class="glow"></span>
+      <div class="cta-text">
+        <Heading class="h-md" pre={d.cta.title.pre} accent={d.cta.title.accent} accentClass="nude" />
+        <p class="cta-body">{d.cta.body}</p>
+      </div>
+      <div class="cta-actions">
+        <a href={contact} class="btn btn-white">{d.cta.primary} <Icons name="arrow" /></a>
+        <a href={contact} class="btn btn-outline-light">{d.cta.secondary} <Icons name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .page-hero { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 32px; align-items: end; padding-block: clamp(48px, 6vw, 88px) clamp(32px, 4vw, 64px); }
+  .page-hero .display { margin-top: 20px; }
+  .intro { display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px; }
+  @media (max-width: 860px) { .page-hero { grid-template-columns: minmax(0, 1fr); } }
+
+  .section-nav { display: flex; flex-wrap: wrap; gap: 10px; border-block: 1px solid var(--line); padding-block: 18px; }
+  .section-nav a { padding: 12px 18px; border-radius: 999px; border: 1.5px solid rgba(30, 26, 25, 0.2); }
+  .section-nav a:first-child { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  .group { padding-top: var(--section); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .group-left, .group-right { display: flex; flex-direction: column; gap: 22px; }
+  .group-right { gap: 28px; padding-top: 8px; }
+  .group-photo { aspect-ratio: 3 / 2; border-radius: var(--radius-md); margin-top: 12px; }
+  .group-photo img { object-position: 50% 40%; }
+  .specialties { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .specialties li { display: flex; align-items: center; gap: 14px; background: var(--sand); border-radius: 16px; padding: 18px 20px; font-size: 16px; font-weight: 700; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  @media (max-width: 860px) { .group { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 600px) { .specialties { grid-template-columns: minmax(0, 1fr); } }
+
+  .one-class { margin-top: clamp(40px, 5vw, 72px); background: var(--black); color: var(--white); border-radius: var(--radius-lg); padding: clamp(32px, 5vw, 72px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; align-items: center; }
+  .one-class > div { display: flex; flex-direction: column; gap: 18px; }
+  .nude-text { color: var(--nude); text-wrap: pretty; }
+  .elements { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .elements li { background: var(--wine); border-radius: 18px; padding: 22px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .el { font-size: 26px; letter-spacing: -0.02em; }
+  @media (max-width: 860px) { .one-class { grid-template-columns: minmax(0, 1fr); } }
+
+  .personal { margin-top: var(--section); background: var(--wine); color: var(--white); padding-block: var(--section); overflow: hidden; }
+  .personal .glow { top: -300px; right: -200px; width: 900px; height: 900px; background: radial-gradient(closest-side, var(--red) 0%, rgba(77, 20, 24, 0) 70%); opacity: 0.7; }
+  .personal-left, .personal-right { display: flex; flex-direction: column; gap: 22px; }
+  .personal-right { gap: 18px; padding-top: 8px; }
+  .avail { letter-spacing: 0.14em; line-height: 1.7; }
+  .personal .btn { align-self: flex-start; margin-top: 6px; white-space: normal; text-align: left; }
+
+  .quals { padding-top: var(--section); grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+  .quals .display { margin-top: 16px; }
+  @media (max-width: 860px) { .quals { grid-template-columns: minmax(0, 1fr); } }
+  .qual { justify-content: space-between; align-items: center; gap: 24px; font-size: 18px; font-weight: 700; padding-block: 22px; }
+  .qual .level { width: auto; color: var(--brown); text-align: right; flex-shrink: 0; white-space: nowrap; }
+  .qual:last-child .level { color: var(--red); }
+
+  .testimonials { padding-top: var(--section); display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px); }
+  .testimonials .display { margin-top: 16px; }
+  .quotes { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px; }
+  .quote { margin: 0; display: flex; flex-direction: column; gap: 24px; border-radius: var(--radius-md); padding: clamp(28px, 3vw, 44px); }
+  .quote .serif { font-size: clamp(22px, 2.1vw, 30px); line-height: 1.3; text-wrap: pretty; }
+  .quote footer { display: flex; align-items: center; gap: 12px; margin-top: auto; font-size: 15px; font-weight: 800; }
+  .line { display: inline-block; width: 28px; height: 2px; background: var(--red); }
+  .quote-sand { background: var(--sand); }
+  .quote-nude { background: var(--nude); }
+  @media (max-width: 860px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
+
+  .cta { margin-top: var(--section); background: var(--red); color: var(--white); border-radius: var(--radius-lg); padding: clamp(44px, 6vw, 88px) clamp(24px, 5.5vw, 80px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px; align-items: center; position: relative; overflow: hidden; }
+  .cta .glow { bottom: -360px; right: -160px; width: 760px; height: 760px; background: var(--wine); opacity: 0.6; }
+  .cta-text, .cta-actions { position: relative; }
+  .cta-text { display: flex; flex-direction: column; gap: 22px; }
+  .cta-body { color: var(--rose-light); max-width: 600px; font-size: 18px; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; }
+  .cta-actions .btn { justify-content: space-between; white-space: normal; text-align: left; }
+  @media (max-width: 860px) { .cta { grid-template-columns: minmax(0, 1fr); } }
+</style>

@@ -1,33 +1,50 @@
 ---
 import Icons from './Icons.astro';
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+import { locales, localePath, t, type Locale } from '../i18n';
+
+interface Props { locale: Locale; path: string; }
+const { locale, path } = Astro.props;
+const d = t(locale);
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/coaching', label: 'Coaching' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: localePath(locale, '/'), label: d.nav.home, key: '/' },
+  { href: localePath(locale, '/coaching'), label: d.nav.coaching, key: '/coaching' },
+  { href: localePath(locale, '/about'), label: d.nav.about, key: '/about' },
+  { href: localePath(locale, '/contact'), label: d.nav.contact, key: '/contact' },
 ];
+const contactHref = localePath(locale, '/contact');
 ---
 <header class="nav">
   <div class="container nav-inner">
-    <a href="/" class="eyebrow brand">Eli del Toro <span>·</span> Coach</a>
+    <a href={localePath(locale, '/')} class="eyebrow brand">Eli del Toro <span>·</span> Coach</a>
     <nav class="links" aria-label="Main">
       {links.map((l) => (
-        <a href={l.href} class:list={{ active: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+        <a href={l.href} class:list={{ active: path === l.key }} aria-current={path === l.key ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
-    <a href="/contact" class="btn btn-red nav-cta">Contact me <Icons name="arrow" /></a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-      <span class="icon-open"><Icons name="menu" size={24} /></span>
-      <span class="icon-close"><Icons name="close" size={24} /></span>
-    </button>
+    <div class="right">
+      <nav class="lang" aria-label={d.nav.language}>
+        {locales.map((l) => (
+          <a href={localePath(l, path)} hreflang={l} lang={l} class:list={{ active: l === locale }} aria-current={l === locale ? 'true' : undefined}>{l.toUpperCase()}</a>
+        ))}
+      </nav>
+      <a href={contactHref} class="btn btn-red nav-cta">{d.nav.contactMe} <Icons name="arrow" /></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={d.nav.openMenu} data-open={d.nav.openMenu} data-close={d.nav.closeMenu}>
+        <span class="icon-open"><Icons name="menu" size={24} /></span>
+        <span class="icon-close"><Icons name="close" size={24} /></span>
+      </button>
+    </div>
   </div>
   <div class="mobile" id="mobile-menu" hidden>
     <nav class="container mobile-links" aria-label="Main mobile">
       {links.map((l) => (
-        <a href={l.href} class:list={{ active: path === l.href }}>{l.label}</a>
+        <a href={l.href} class:list={{ active: path === l.key }}>{l.label}</a>
       ))}
-      <a href="/contact" class="btn btn-red">Contact me <Icons name="arrow" /></a>
+      <div class="mobile-lang" aria-label={d.nav.language}>
+        {locales.map((l) => (
+          <a href={localePath(l, path)} hreflang={l} lang={l} class:list={{ active: l === locale }}>{t(l).name}</a>
+        ))}
+      </div>
+      <a href={contactHref} class="btn btn-red">{d.nav.contactMe} <Icons name="arrow" /></a>
     </nav>
   </div>
 </header>
@@ -39,6 +56,10 @@ const links = [
   .brand span { color: var(--red); }
   .links { display: flex; align-items: center; gap: clamp(20px, 2.5vw, 36px); font-size: 15px; font-weight: 600; }
   .links a.active { color: var(--red); }
+  .right { display: flex; align-items: center; gap: 18px; }
+  .lang { display: flex; align-items: center; gap: 2px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; }
+  .lang a { padding: 6px 8px; border-radius: 999px; color: var(--brown); }
+  .lang a.active { color: var(--black); background: var(--sand); }
   .nav-cta { min-height: 46px; padding: 12px 20px; font-size: 14px; }
   .menu-btn { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
   .menu-btn .icon-close { display: none; }
@@ -46,12 +67,15 @@ const links = [
   .menu-btn[aria-expanded="true"] .icon-close { display: inline-flex; }
   .mobile { border-top: 1px solid var(--line); background: var(--white); }
   .mobile-links { display: flex; flex-direction: column; gap: 4px; padding-block: 12px 20px; font-size: 18px; font-weight: 700; }
-  .mobile-links a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .mobile-links > a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .mobile-links a.active { color: var(--red); }
+  .mobile-lang { display: flex; gap: 8px; padding: 14px 0 4px; font-size: 13px; font-weight: 700; }
+  .mobile-lang a { padding: 10px 14px; border-radius: 999px; border: 1.5px solid var(--line); color: var(--brown); }
+  .mobile-lang a.active { background: var(--black); color: var(--white); border-color: var(--black); }
   .mobile-links .btn { margin-top: 14px; }
-  @media (max-width: 860px) {
+  @media (max-width: 960px) {
     .nav-inner { height: 64px; }
-    .links, .nav-cta { display: none; }
+    .links, .nav-cta, .lang { display: none; }
     .menu-btn { display: inline-flex; }
   }
 </style>
@@ -62,7 +86,7 @@ const links = [
   btn?.addEventListener('click', () => {
     const open = btn.getAttribute('aria-expanded') === 'true';
     btn.setAttribute('aria-expanded', String(!open));
-    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    btn.setAttribute('aria-label', open ? btn.dataset.open ?? '' : btn.dataset.close ?? '');
     if (menu) menu.hidden = open;
   });
 </script>

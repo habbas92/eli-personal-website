@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icons from '../Icons.astro';
+import Heading from '../Heading.astro';
+import portrait from '../../assets/photos/about-portrait.jpg';
+import story from '../../assets/photos/about-story.jpg';
+import riviera from '../../assets/photos/about-riviera.jpg';
+import { localePath, t, type Locale } from '../../i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const d = t(locale).about;
+const contact = localePath(locale, '/contact');
+---
+<Base locale={locale} page="about">
+
+  <section class="hero container">
+    <div class="hero-text">
+      <p class="eyebrow red">{d.eyebrow}</p>
+      <Heading as="h1" class="h-lg" pre={d.title.pre} accent={d.title.accent} />
+      <p class="body">{d.intro}</p>
+      <p class="serif quote">{d.quote}</p>
+      <p class="body">{d.after}</p>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-back"></div>
+      <div class="frame hero-frame">
+        <Image src={portrait} alt={d.portraitAlt} width={1100} widths={[480, 800, 1100]} sizes="(max-width: 860px) 90vw, 40vw" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="story grain">
+    <span class="glow"></span>
+    <div class="container split">
+      <div class="story-left">
+        <p class="eyebrow nude">{d.story.eyebrow}</p>
+        <Heading class="h-sm" pre={d.story.title.pre} accent={d.story.title.accent} accentClass="nude" />
+        <div class="frame story-photo">
+          <Image src={story} alt={d.story.photoAlt} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 860px) 90vw, 40vw" />
+        </div>
+        <ul class="pills">
+          {d.story.sports.map((s) => (<li class="eyebrow">{s}</li>))}
+        </ul>
+      </div>
+      <div class="story-right">
+        <p class="lead">{d.story.lead}</p>
+        <p class="body-light">{d.story.p1}</p>
+        <p class="body-light">{d.story.p2}</p>
+        <ul class="tiles">
+          {d.story.tiles.map((tile) => (<li><span class="display">{tile.big}</span><span class="eyebrow nude">{tile.small}</span></li>))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container again split">
+    <div>
+      <p class="eyebrow red">{d.again.eyebrow}</p>
+      <Heading class="h-sm" pre={d.again.title.pre} accent={d.again.title.accent} />
+    </div>
+    <div class="again-right">
+      <p class="body">{d.again.p1}</p>
+      <p class="body">{d.again.p2}</p>
+      <p class="lead">{d.again.lead}</p>
+      <p class="body">{d.again.p3}</p>
+      <div class="frame riviera-photo">
+        <Image src={riviera} alt={d.again.photoAlt} width={1200} widths={[600, 900, 1200]} sizes="(max-width: 860px) 90vw, 50vw" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="becoming split">
+      <div>
+        <p class="eyebrow red">{d.becoming.eyebrow}</p>
+        <Heading class="h-sm" pre={d.becoming.title.pre} accent={d.becoming.title.accent} />
+      </div>
+      <div class="becoming-right">
+        <p class="body">{d.becoming.p1}</p>
+        <p class="body">{d.becoming.p2}</p>
+        <p class="body">{d.becoming.p3}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="closing">
+      <span class="glow"></span>
+      <Heading class="h-md" pre={d.closing.title.pre} accent={d.closing.title.accent} accentClass="nude" />
+      <a href={contact} class="btn btn-white">{d.closing.button} <Icons name="arrow" /></a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 4vw, 64px); align-items: center; padding-block: clamp(40px, 6vw, 88px) clamp(48px, 6vw, 96px); }
+  .hero-text { display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px); }
+  .hero-text .body { max-width: 600px; }
+  .quote { font-size: clamp(28px, 3vw, 44px); line-height: 1.15; padding-left: 24px; border-left: 3px solid var(--red); max-width: 600px; font-style: italic; }
+  .hero-photo { position: relative; aspect-ratio: 5 / 6; max-height: 640px; }
+  .hero-back { position: absolute; inset: 24px -12px -16px 36px; background: var(--nude); border-radius: 28px; transform: rotate(3deg); }
+  .hero-frame { position: absolute; inset: 0 16px 0 0; border-radius: 28px; transform: rotate(-2deg); }
+  .hero-frame img { object-position: 50% 25%; }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero-photo { max-width: 420px; width: 100%; margin-inline: auto; aspect-ratio: 4 / 5; }
+  }
+
+  .story { background: var(--wine); color: var(--white); padding-block: var(--section); overflow: hidden; }
+  .story .glow { top: -300px; left: -220px; width: 860px; height: 860px; background: radial-gradient(closest-side, var(--red) 0%, rgba(77, 20, 24, 0) 70%); opacity: 0.7; }
+  .story-left, .story-right { display: flex; flex-direction: column; gap: 24px; }
+  .story-right { gap: 26px; padding-top: 16px; }
+  .story-photo { aspect-ratio: 4 / 3; border-radius: var(--radius-md); margin-top: 8px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills li { padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 999px; color: var(--rose); }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+  .tiles li { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--line-light); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .tiles .display { font-size: 22px; letter-spacing: -0.02em; }
+  @media (max-width: 600px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+
+  .again { padding-block: var(--section) 0; }
+  .again .display, .becoming .display { margin-top: 20px; }
+  .again-right, .becoming-right { display: flex; flex-direction: column; gap: 24px; padding-top: 16px; }
+  .riviera-photo { aspect-ratio: 3 / 2; border-radius: var(--radius-md); margin-top: 8px; }
+
+  .becoming { margin-top: var(--section); background: var(--sand); border-radius: var(--radius-lg); padding: clamp(36px, 5.5vw, 88px) clamp(24px, 5.5vw, 80px); }
+
+  .closing { margin-top: 24px; background: var(--red); color: var(--white); border-radius: var(--radius-lg); padding: clamp(56px, 7vw, 96px) clamp(24px, 5.5vw, 80px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px; position: relative; overflow: hidden; }
+  .closing .glow { top: -360px; left: 50%; margin-left: -400px; width: 800px; height: 800px; background: var(--wine); opacity: 0.55; }
+  .closing .display, .closing .btn { position: relative; }
+  .closing .display { max-width: 1000px; }
+</style>

@@ -6,5 +6,15 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },
-  integrations: [sitemap()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr', 'es'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: { defaultLocale: 'en', locales: { en: 'en', fr: 'fr', es: 'es' } },
+      serialize: (item) => ({ ...item, url: item.url.replace(/\/index\.html$/, '/').replace(/\.html$/, '') }),
+    }),
+  ],
 });
